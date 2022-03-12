@@ -1,0 +1,1 @@
+Only run the DatabaseForFinalProject_TengFei_2021Spring file, it has all the tables + the inserts

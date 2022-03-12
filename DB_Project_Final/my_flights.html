@@ -1,0 +1,133 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+		.checked {
+		color: orange;
+		}
+		body{
+			  background:rgb(100, 54, 60);
+			  color:rgb(43, 14, 14);
+			  text-align:center;
+			  font-family:Helvetica, Arial, sans-serif;
+			  font-size:10pt;
+			}
+		table{
+			width:500px;
+			margin:0 auto;
+			background:rgb(177, 150, 147);
+			border-radius:10px;
+			margin-bottom:20px;
+			padding:20px;
+		}
+	</style>
+</head>
+<body> 
+	<form action="/post" method="POST">
+		<h1>{{name}}'s Flights:</h1>
+	</form>
+	<!-- <button onclick="window.location.href = '/client_home'">Home</button> -->
+	<h3>Past Flights</h3>
+	<style type="text/css">
+		table, th, td{
+			border: 1px solid black;
+		}
+	</style>
+	<div style="background-color:rgb(215, 196, 187)">
+		<table align = "center">
+			<th>TicketID</th>
+			<th>Airline</th>
+			<th>Flight Number</th>
+			<th>Departure</th>
+			<th>From</th>
+			<th>Departure City</th>
+			<th>Estimated Arrival</th>
+			<th>To</th>
+			<th>Arrival City</th>
+			<th>Price</th>
+			<th>Rate</th>
+			<th>Comment</th>
+			<th>Submit Rating</th>
+			<th>Current Rating</th>
+		{% set count = namespace(a=0) %}
+		{% for line in data %}
+			{% set count.a = count.a + 1 %}
+			<form action="/rate" method="POST">
+				<tr onmouseover="this.style.backgroundColor = '#ffff66';" onmouseout="this.style.backgroundColor = '#B19693';">
+					<td>{{line['ticketID']}}</td>
+					<td name = airline_name>{{line['airline_name']}}</td>
+					<input type="hidden" name="airline_name" value="{{line['airline_name']}}" />
+					<td name = flight_no>{{line['flight_no']}}</td>
+					<input type="hidden" name="flight_no" value="{{line['flight_no']}}" />
+					<td name = "departure_date_time">{{line['departure_date_time']}}</td>
+					<input type="hidden" name="departure_date_time" value="{{line['departure_date_time']}}" />
+					<td>{{line['departs_from']}}</td>
+					<td>{{line['departure_city']}}</td>
+					<td>{{line['arrival_date_time']}}</td>
+					<td>{{line['arrives_from']}}</td>
+					<td>{{line['arrival_city']}}</td>
+					<td>{{line['sold_price']}}</td>
+					
+						<td><span class="starRating" required>
+								<input id="rating1" type="radio" name="rating" value="1">
+								<label for="rating1">1</label>
+								<input id="rating2" type="radio" name="rating" value="2">
+								<label for="rating2">2</label>	 
+								<input id="rating3" type="radio" name="rating" value="3"checked>
+								<label for="rating3">3</label>
+								<input id="rating4" type="radio" name="rating" value="4">
+								<label for="rating4">4</label>
+								<input id="rating5" type="radio" name="rating" value="5">
+								<label for="rating5">5</label> 
+							</span>
+						</td>
+						<td><input type="text" placeholder = "comment"  name = "comment"></td>
+						<td><input type="submit" value = Submit></td>
+
+					<td>{{line['rating']}}</td>
+
+				</tr>
+			</form>
+		{% endfor %}
+		</table>
+	</div>
+	<h3>Upcomming Flights</h3>
+	<style type="text/css">
+		table, th, td{
+			border: 1px solid black;
+		}
+	</style>
+
+	<div style="background-color:rgb(215, 196, 187)">
+		<table align = "center">
+			<th>TicketID</th>
+			<th>Airline</th>
+			<th>Flight Number</th>
+			<th>Departure</th>
+			<th>From</th>
+			<th>Departure City</th>
+			<th>Estimated Arrival</th>
+			<th>To</th>
+			<th>Arrival City</th>
+			<th>Price</th>
+
+		{% for line in data2 %}
+		<tr onmouseover="this.style.backgroundColor = '#ffff66';" onmouseout="this.style.backgroundColor = '#B19693';">
+				<td>{{line['ticketID']}}</td>
+				<td>{{line['airline_name']}}</td>
+				<td>{{line['flight_no']}}</td>
+				<td>{{line['departure_date_time']}}</td>
+				<td>{{line['departs_from']}}</td>
+				<td>{{line['departure_city']}}</td>
+				<td>{{line['arrival_date_time']}}</td>
+				<td>{{line['arrives_from']}}</td>
+				<td>{{line['arrival_city']}}</td>
+				<td>{{line['sold_price']}}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	</div>
+</body>
+
+
+</html>

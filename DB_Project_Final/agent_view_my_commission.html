@@ -1,0 +1,33 @@
+<html>
+<head>
+</head>
+<body> 
+	<form action="/view_my_commission" method="POST">
+		<h1>Welcome {{email}}</h1>
+	</form>
+
+	<style type="text/css">
+		table, th, td{
+			border: 1px solid black;
+		}
+	</style>
+
+	<div>
+		<table>
+			<th>Agent</th>
+			<th>Commmission Received</th>
+            <th>Commmission Avg</th>
+            <th>Total Number of Tickets Sold</th>
+		{% for line in data %}
+			<tr>
+                <td>{{email}}</td>
+				<td>{{line['SUM(commission)']}}</td>
+                <td>{{line['FORMAT(SUM(commission)/ COUNT(ticket_id), 0)']}}</td>
+                <td>{{line['COUNT(ticket_id)']}}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	</div>
+</body>
+
+</html>

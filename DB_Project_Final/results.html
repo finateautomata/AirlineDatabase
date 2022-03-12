@@ -1,0 +1,66 @@
+<html>
+<head>
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+	<style type="text/css">
+		table, th, td{
+			border: 1px solid black;
+		}
+		body{
+			  background:rgb(100, 54, 60);
+			  color:rgb(43, 14, 14);
+			  text-align:center;
+			  font-family:Helvetica, Arial, sans-serif;
+			  font-size:10pt;
+			}
+		form{
+			width:500px;
+			margin:0 auto;
+			background:rgb(177, 150, 147);
+			border-radius:10px;
+			margin-bottom:20px;
+			padding:20px;
+		}
+	</style>
+</head>
+<body> 
+	<form action="/post" method="POST">
+		<h3 align = "center" class="header">Welcome {{name}}</h3>
+	</form>
+	<div style="background-color:'#64363C'">
+		<table align = "center">
+			<th>Airline</th>
+			<th>Flight Number</th>
+			<th>Departure</th>
+			<th>From</th>
+			<th>Departure City</th>
+			<th>Estimated Arrival</th>
+			<th>To</th>
+			<th>Arrival City</th>
+			<th>Price</th>
+
+		{% for line in data %}
+			<tr onmouseover="this.style.backgroundColor = '#ffff66';" onmouseout="this.style.backgroundColor = '#64363C';">
+				<td>{{line['airline_name']}}</td>
+				<td>{{line['flight_no']}}</td>
+				<td>{{line['departure_date_time']}}</td>
+				<td>{{line['departs_from']}}</td>
+				<td>{{line['departure_city']}}</td>
+				<td>{{line['arrival_date_time']}}</td>
+				<td>{{line['arrives_from']}}</td>
+				<td>{{line['arrival_city']}}</td>
+				<td>{{line['real_price']}}</td>
+			</tr>
+		{% endfor %}
+		</table>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head>
+	<style type="text/css">
+		body{
+		  background:rgb(100, 54, 60);
+		  color:white;
+		  text-align:center;
+		  font-family:Helvetica, Arial, sans-serif;
+		  font-size:10pt;
+		}
+		form{
+		  width:500px;
+		  margin:0 auto;
+		  background:rgb(177, 150, 147);
+		  border-radius:10px;
+		  margin-bottom:20px;
+		  padding:20px;
+		}
+	</style>
+</head>
+<body>
+<h3 align = "center" class="header">Agent Login Page</h3>
+<form action="/AloginAuth" method="POST">
+	<input type="text" name = "email" placeholder="email" required/></br>
+	<input type="password" name = "password" placeholder="password" required/></br>
+	<input type="submit" value = login>
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+	<br/>
+	<button align = "center" onclick="window.location.href = '/'">GO BACK</button>
+</form>
+
+</body>
+</html>

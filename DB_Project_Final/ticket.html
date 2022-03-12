@@ -1,0 +1,34 @@
+<html>
+<head>
+    <style type="text/css">
+		body{
+			  background:rgb(100, 54, 60);
+			  color:rgb(43, 14, 14);
+			  text-align:center;
+			  font-family:Helvetica, Arial, sans-serif;
+			  font-size:10pt;
+			}
+		/* form{
+			width:500px;
+			margin:0 auto;
+			background:rgb(177, 150, 147);
+			border-radius:10px;
+			margin-bottom:20px;
+			padding:20px;
+		} */
+	</style>
+</head>
+<body>
+<h1>TicketID: {{ticketID}}</h1>
+<h3>Airline: {{airline_name}}</h3>
+<h3>Flight #: {{flight_no}}</h3>
+<h3>Departure: {{departure_date_time}}</h3>
+<h3>Passenger: {{name}}</h3>
+<h3>Purchase Date: {{purchase_date}}</h3>
+<h3>Card Type: {{card_type}}</h3>
+<h3>Card Ending In: {{card_no[-4:]}}</h3>
+<h3>Name on Card: {{name_on_card}}</h3>
+<h1>Total Charged: {{sold_price}}</h1>
+<a href="/view_flights">My Flights</a>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>  
+    <script>
+    window.onload = function () {
+        var dataArrayX_1 = {{dataX_NumberOfTickets|tojson}};
+        var dataArrayY_1 = {{dataY_NumberOfTickets|tojson}};
+
+        var dataArrayX_2 = {{dataX_AmountOfCommission|tojson}};
+        var dataArrayY_2 = {{dataY_AmountOfCommission|tojson}};
+
+        var dps_1 = [];   //dataPoints. 
+        var dps_2 = []; 
+
+        console.log(dataArrayX_1)
+        // #1
+        function parseDataPoints_1 () {
+            for (var i = 0; i <= dataArrayX_1.length; i++)   
+            dps_1.push({label: String(dataArrayX_1[i]), y: dataArrayY_1[i]});     
+        };
+        parseDataPoints_1();
+
+        var chart_1 = new CanvasJS.Chart("chartContainer_1", {
+            animationEnabled: true,
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            title:{
+                text: "Ranked By Customers in Number of Tickets Brought"
+            },
+            axisY: {
+                title: "Number of Tickets"
+            },
+            data: [{        
+                type: "column",  
+                showInLegend: true, 
+                // legendMarkerColor: "grey",
+                legendText: "Tickets",
+                dataPoints: dps_1
+            }]  
+        });
+        //#2
+        function parseDataPoints_2 () {
+                for (var i = 0; i <= dataArrayX_2.length; i++)   
+                dps_2.push({label: String(dataArrayX_2[i]), y: dataArrayY_2[i]});     
+            };
+
+            parseDataPoints_2();
+    
+        var chart_2 = new CanvasJS.Chart("chartContainer_2", {
+            animationEnabled: true,
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            title:{
+                text: "Ranked By Customers in Commission"
+            },
+            axisY: {
+                title: "Number of Tickets"
+            },
+            data: [{        
+                type: "column",  
+                showInLegend: true, 
+                // legendMarkerColor: "grey",
+                legendText: "Commission",
+                dataPoints: dps_2
+            }]  
+        });
+
+
+        chart_1.render();
+        chart_2.render();
+    };   
+    </script>
+
+</head>
+
+
+<body>
+    <form action="/post" method="POST">
+        <h1>Welcome: agent number {{agent_id}}</h1>
+    </form>
+    <div id="chartContainer_1" style = "height: 300px; width: 100%;"></div>
+
+    <div id="chartContainer_2" style = "height: 300px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <style type="text/css">
+        table, th, td{
+            border: 1px solid black;
+        }
+    </style>
+
+</body>
+</html>
